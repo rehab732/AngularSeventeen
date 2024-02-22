@@ -1,0 +1,10 @@
+<div class="sticky-note" (mouseenter)="changeSize('large')" (mouseleave)="changeSize('small')">
+  <div class="header">
+    <span class="color-icon" (click)="changeColor()">
+      <i class="fas fa-paint-brush"></i>
+    </span>
+  </div>
+  <div class="content">
+    <ng-content></ng-content>
+  </div>
+</div>

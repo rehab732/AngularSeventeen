@@ -1,0 +1,14 @@
+<!-- <h1>Rehab Component Works</h1>
+<button [disabled]="!allButton">Button Test</button>
+<p>My Name IS {{name}}</p>
+<p>My Age Is {{age}}</p>
+<p>{{'test Functions'}} {{getName()}}</p>
+<h1>Diffrent Between String Interpolation and Property bindig</h1>
+<h3>{{allButton}}</h3>
+<h1 [innerText]="allButton"></h1>
+<h4>{{10+15}}</h4> -->
+
+<label>Student Name</label>
+<input type="text" (input)="onUpdateStudentName($event)">
+<h1>Student Name Is {{name}}</h1>
+<input [(ngModel)]="name">

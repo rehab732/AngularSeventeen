@@ -1,0 +1,19 @@
+.sticky-note {
+  background-color: #ffeb3b;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 200px;
+  position: relative;
+  margin: 10px;
+}
+
+.header {
+  height: 10px;
+  background-color: #ccc;
+  margin-bottom: 5px;
+}
+.color-icon {
+  cursor: pointer;
+  float: right;
+}

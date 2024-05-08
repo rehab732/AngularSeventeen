@@ -1,0 +1,11 @@
+<img src={{storeInfo.imgURL}} alt="">
+<h1>{{storeInfo.name}}</h1>
+<button class="btn btn-danger" (click)="tapToToggel()" >Toggel</button>
+<ul> 
+@if(isShown){
+  <h1>Rehab Zaki</h1>
+}
+@for (item of storeInfo.branches; track $index) {
+  <li>{{item}}</li>
+}
+</ul>

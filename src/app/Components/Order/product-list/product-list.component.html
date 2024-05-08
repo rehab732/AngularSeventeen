@@ -1,20 +1,18 @@
+<div>Order Date Is: {{orderDate | date:'longDate'}}</div>
+<hr>
 <div class="mb-3">
   <label for="prdCat" class="form-label">Category</label>
-  <select
-  [(ngModel)]="selectedCategory"
-    class="form-select form-select-lg"
-    name="prdCat"
-    id="prdCat"
-  >
-  @for (item of categoryList; track $index) {
+  <select [(ngModel)]="selectedCategory" class="form-select form-select-lg" name="prdCat" id="prdCat">
+    @for (item of categoryList; track $index) {
     <option [value]="item.id">{{item.name}}</option>
-  }
+    }
   </select>
 </div>
 <div class="text-secondary">
   [For Test]
   {{selectedCategory}}
 </div>
+
 
 <hr>
 <table class="table">
@@ -24,27 +22,44 @@
       <th>Name</th>
       <th>Image</th>
       <th>Quantity</th>
-      <th>Price</th>
+      <th>Price in USD</th>
+      <th>Price in EGP</th>
       <th>Buy</th>
-<th>Count</th>
+      <th>Count</th>
     </tr>
   </thead>
   <tbody>
     @for(product of prodList; track $index ){
-      <tr>
-        <td>{{product.id}}</td>
-        <td>{{product.name}}</td>
-        <!-- property binding -->
-        <!-- <td> <img [src]="product.imgURL"></td> -->
-        <!-- interpolation -->
-        <td> <img src={{product.imgURL}}></td>
-        <td>{{product.quantity}}</td>
-        <td>{{product.price}}</td>
-<td><input type="number" class="form-control" #itemsCount></td>
-        <td>
-          <button class="btn btn-secondary" type="button" (click)="Buy(product.price,itemsCount.value)">Buy</button>
-        </td>
-      </tr>
+    <tr  [ngStyle]="{'background-color': product.quantity==0?'lightyellow':'lightgrey'}">
+      <!-- <td>{{product.id}}</td> -->
+      <td>{{$index+1}}</td>
+
+      <td>{{product.name}}</td>
+      <!-- property binding -->
+      <!-- <td> <img [src]="product.imgURL"></td> -->
+      <!-- interpolation -->
+      <td> <img src={{product.imgURL}} appLightBox="green"  defaultColor="blue"></td>
+      @switch (product.quantity) {
+        @case (0) {
+          <td >out of stock</td>
+        }
+        @case (1) {
+          <td>Last Item</td>
+        }
+        @default {
+          <td>{{product.quantity}}</td>
+        }
+      }
+      <td>{{product.price | currency:'USD':'symbol'}}</td>
+      <td>{{product.price |USDTOEGP| currency:'EGP':'symbol'}}</td>
+
+      <td><input type="number" class="form-control" #itemsCount></td>
+      <td>
+        <button class="btn btn-secondary" type="button" (click)="Buy(product.price,itemsCount.value)">Buy</button>
+      </td>
+    </tr>
+    }@empty{
+    <h1>there is no items</h1>
     }
   </tbody>
 </table>

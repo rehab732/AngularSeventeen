@@ -1,18 +1,21 @@
-import { Directive, ElementRef, HostListener, Input, input } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnChanges, SimpleChanges } from '@angular/core';
 
 @Directive({
   selector: '[appLightBox]',
   standalone: true,
 })
-export class LightBoxDirective {
+export class LightBoxDirective implements OnChanges{
 
 @Input('appLightBox')
  highlightColor:string='yellow';
  @Input()
- defaultColor:string='gray';
+ defaultColor:string='brown';
 
   constructor(private elemRefrence: ElementRef) {
+  }
+  ngOnChanges(): void {
     this.elemRefrence.nativeElement.style.border = `2px solid ${this.defaultColor}`;
+
   }
   @HostListener('mouseover')
   onMouseOver() {

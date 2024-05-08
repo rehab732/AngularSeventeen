@@ -1,8 +1,15 @@
-import { Component, Pipe } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnChanges,
+  Pipe,
+  SimpleChanges,
+  input,
+} from '@angular/core';
 import { IProduct } from '../../../Models/iproduct';
 import { FormsModule } from '@angular/forms';
 import { ICategory } from '../../../Models/icategory';
-import {NgStyle,NgClass, CurrencyPipe, DatePipe} from '@angular/common';
+import { NgStyle, NgClass, CurrencyPipe, DatePipe } from '@angular/common';
 import { LightBoxDirective } from '../../../Directives/light-box.directive';
 import { USDTOEGPPipe } from '../../../Pipes/usdtoegp.pipe';
 
@@ -16,26 +23,21 @@ import { USDTOEGPPipe } from '../../../Pipes/usdtoegp.pipe';
     LightBoxDirective,
     CurrencyPipe,
     DatePipe,
-    USDTOEGPPipe
+    USDTOEGPPipe,
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 })
-export class ProductListComponent {
-  categoryList:ICategory[];
-  prodList: IProduct[] ;
+export class ProductListComponent implements OnChanges {
+  @Input() sentCategoryID: number = 0;
+  prodList: IProduct[];
+  prodListOfCat: IProduct[];
   orderTotalPrice = 0;
-  selectedCategory=0;
-  onSale:boolean=true;
-  orderDate:Date;
+  onSale: boolean = true;
+  orderDate: Date;
   constructor() {
-    this.categoryList=[
-      {id:1,name:"Valeo"},
-      {id:2,name:"Front"},
-      {id:3,name:"Back"},
-      {id:4,name:"Valeo"},
-    ]
-    this.orderDate=new Date();
+    this.prodListOfCat = [];
+    this.orderDate = new Date();
     this.prodList = [
       {
         id: 1,
@@ -86,10 +88,24 @@ export class ProductListComponent {
         imgURL: 'https://fakeimg.pl/200x100',
       },
     ];
+    this.prodListOfCat = this.prodList;
+  }
+  ngOnChanges(): void {
+    this.filterProductsByCatID();
   }
   Buy(price: number, count: any) {
     let itemsCount: number;
     itemsCount = +count;
     this.orderTotalPrice = itemsCount * price;
+  }
+
+  private filterProductsByCatID() {
+    if (this.sentCategoryID == 0) {
+      this.prodListOfCat = this.prodList;
+    } else {
+      this.prodListOfCat = this.prodList.filter(
+        (pro) => pro.categoryId == this.sentCategoryID
+      );
+    }
   }
 }

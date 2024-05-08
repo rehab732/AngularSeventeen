@@ -6,6 +6,7 @@ import { SidebarComponent } from './Components/sidebar/sidebar.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { HomeComponent } from './Components/home/home.component';
 import { ProductListComponent } from "./Components/Order/product-list/product-list.component";
+import { OrderMasterComponent } from './Components/Order/order-master/order-master.component';
 
 @Component({
     selector: 'app-root',
@@ -19,7 +20,8 @@ import { ProductListComponent } from "./Components/Order/product-list/product-li
         SidebarComponent,
         FooterComponent,
         HomeComponent,
-        ProductListComponent
+        ProductListComponent,
+        OrderMasterComponent
     ]
 })
 export class AppComponent {

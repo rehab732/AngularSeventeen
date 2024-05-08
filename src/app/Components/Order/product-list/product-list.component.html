@@ -1,17 +1,12 @@
-<div>Order Date Is: {{orderDate | date:'longDate'}}</div>
-<hr>
-<div class="mb-3">
-  <label for="prdCat" class="form-label">Category</label>
-  <select [(ngModel)]="selectedCategory" class="form-select form-select-lg" name="prdCat" id="prdCat">
-    @for (item of categoryList; track $index) {
-    <option [value]="item.id">{{item.name}}</option>
-    }
-  </select>
-</div>
+<!-- <div>Order Date Is: {{orderDate | date:'longDate'}}</div>
+<hr> -->
+
+
+<!-- </div>
 <div class="text-secondary">
   [For Test]
   {{selectedCategory}}
-</div>
+</div> -->
 
 
 <hr>
@@ -29,26 +24,25 @@
     </tr>
   </thead>
   <tbody>
-    @for(product of prodList; track $index ){
-    <tr  [ngStyle]="{'background-color': product.quantity==0?'lightyellow':'lightgrey'}">
+    @for(product of prodListOfCat; track $index ){
+    <tr [ngStyle]="{'background-color': product.quantity==0?'lightyellow':'lightgrey'}">
       <!-- <td>{{product.id}}</td> -->
       <td>{{$index+1}}</td>
-
       <td>{{product.name}}</td>
       <!-- property binding -->
       <!-- <td> <img [src]="product.imgURL"></td> -->
       <!-- interpolation -->
-      <td> <img src={{product.imgURL}} appLightBox="green"  defaultColor="blue"></td>
+      <td> <img src={{product.imgURL}} appLightBox="green" defaultColor="blue"></td>
       @switch (product.quantity) {
-        @case (0) {
-          <td >out of stock</td>
-        }
-        @case (1) {
-          <td>Last Item</td>
-        }
-        @default {
-          <td>{{product.quantity}}</td>
-        }
+      @case (0) {
+      <td>out of stock</td>
+      }
+      @case (1) {
+      <td>Last Item</td>
+      }
+      @default {
+      <td>{{product.quantity}}</td>
+      }
       }
       <td>{{product.price | currency:'USD':'symbol'}}</td>
       <td>{{product.price |USDTOEGP| currency:'EGP':'symbol'}}</td>
@@ -64,4 +58,7 @@
   </tbody>
 </table>
 <hr>
-<h3>Total Price: {{orderTotalPrice}}</h3>
+<div class="bg-danger">
+  [To be Remover]
+  <h3>Total Price: {{orderTotalPrice}}</h3>
+</div>

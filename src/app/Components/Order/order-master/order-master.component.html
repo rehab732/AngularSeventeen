@@ -1,0 +1,17 @@
+<h2>Create Your Order : </h2>
+<div class="mb-3">
+  <label for="prdCat" class="form-label">Category</label>
+  <select [(ngModel)]="selectedCategory" class="form-select form-select-lg" name="prdCat" id="prdCat">
+    <option value="0" selected>All</option>
+    @for (item of categoryList; track $index) {
+    <option [value]="item.id">{{item.name}}</option>
+    }
+  </select>
+<hr>
+
+<div class="bg-warning">
+  <app-product-list [sentCategoryID]="selectedCategory"></app-product-list>
+</div>
+<hr>
+
+<h3>Order Total Price : {{orderTotalPrice}} </h3>

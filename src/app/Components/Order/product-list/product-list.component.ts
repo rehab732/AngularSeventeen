@@ -1,7 +1,9 @@
 import {
   Component,
+  EventEmitter,
   Input,
   OnChanges,
+  Output,
   Pipe,
   SimpleChanges,
   input,
@@ -34,6 +36,8 @@ export class ProductListComponent implements OnChanges {
   prodListOfCat: IProduct[];
   orderTotalPrice = 0;
   onSale: boolean = true;
+  @Output()
+  totalPriceChanched:EventEmitter<number>;
   orderDate: Date;
   constructor() {
     this.prodListOfCat = [];
@@ -89,6 +93,7 @@ export class ProductListComponent implements OnChanges {
       },
     ];
     this.prodListOfCat = this.prodList;
+    this.totalPriceChanched=new EventEmitter<number>();
   }
   ngOnChanges(): void {
     this.filterProductsByCatID();
@@ -96,7 +101,9 @@ export class ProductListComponent implements OnChanges {
   Buy(price: number, count: any) {
     let itemsCount: number;
     itemsCount = +count;
-    this.orderTotalPrice = itemsCount * price;
+    this.orderTotalPrice += itemsCount * price;
+    //execute event
+    this.totalPriceChanched.emit(this.orderTotalPrice)
   }
 
   private filterProductsByCatID() {

@@ -9,7 +9,7 @@ export class StaticProductService {
   constructor() {
     this.prdList = [
       {
-        id: 1,
+        id: 100,
         name: 'Lenovo Laptop',
         price: 20000,
         quantity: 50,
@@ -17,7 +17,7 @@ export class StaticProductService {
         imgURL: 'https://fakeimg.pl/200x100',
       },
       {
-        id: 2,
+        id: 200,
         name: 'Lenovo Laptop',
         price: 316665,
         quantity: 0,
@@ -25,7 +25,7 @@ export class StaticProductService {
         imgURL: 'https://fakeimg.pl/200x100',
       },
       {
-        id: 3,
+        id: 300,
         name: 'Lenovo Laptop',
         price: 2145646,
         quantity: 1,
@@ -33,7 +33,7 @@ export class StaticProductService {
         imgURL: 'https://fakeimg.pl/200x100',
       },
       {
-        id: 4,
+        id: 400,
         name: 'Lenovo Laptop',
         price: 111246000,
         quantity: 10,
@@ -41,7 +41,7 @@ export class StaticProductService {
         imgURL: 'https://fakeimg.pl/200x100',
       },
       {
-        id: 5,
+        id: 500,
         name: 'Lenovo Laptop',
         price: 44450000,
         quantity: 2,
@@ -49,7 +49,7 @@ export class StaticProductService {
         imgURL: 'https://fakeimg.pl/200x100',
       },
       {
-        id: 6,
+        id: 600,
         name: 'Lenovo Laptop',
         price: 78822000,
         quantity: 16,
@@ -74,4 +74,13 @@ export class StaticProductService {
       return this.prdList.filter((product) => product.categoryId == cID);
     }
   }
+  addNewProduct(newProduct:IProduct){
+    this.prdList.push(newProduct);
+
+  }
+
+  getProductsIDS():number[]{
+    let productsIDS:number[]=  this.prdList.map(product=>product.id);
+    return productsIDS;
+    }
 }

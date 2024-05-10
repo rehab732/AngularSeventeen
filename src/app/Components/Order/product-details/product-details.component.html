@@ -1,0 +1,14 @@
+<div class="card" style="width: 18rem;">
+  <img [src]="myProduct?.imgURL" class="card-img-top">
+  <div class="card-body">
+    <h5 class="card-title">{{myProduct?.name}}</h5>
+    <p class="card-text">Quantity : {{myProduct?.quantity}}</p>
+    <p class="card-text">Price : {{myProduct?.price}}</p>
+    <button (click)="goBack()" class="btn btn-danger">Go Back</button>
+</div>
+</div>
+<div class="m-3">
+  <button type="button" class="btn btn-primary" (click)="goBack()">Back</button>
+  <button [disabled]="recivedProductID==productArrayIDS[productArrayIDS.length]" type="button" class="btn btn-secondary" (click)="goNext()">Next</button>
+  <button [disabled]="recivedProductID==productArrayIDS[0]" type="button" class="btn btn-success" (click)="goPrevious()">Previous</button>
+</div>  

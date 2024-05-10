@@ -33,7 +33,7 @@ clientNameInp!:ElementRef;
     this.clientNameInp.nativeElement.value="Your Name Here";
     this.clientNameInp.nativeElement.style.border="4px solid red";
 console.log("print here for test");
-    console.log(this.prdListComponent.prodList);
+    // console.log(this.prdListComponent.prodList);
   }
 
   onTotalPriceChange(totalPrice:number){
